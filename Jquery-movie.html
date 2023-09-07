@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Title and Rating App</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+</head>
+<body>
+    <h1>Movies and their Rating</h1>
+    <form id="entry-form">
+        <label for="title">Title:</label>
+        <input type="text" id="title" required>
+        <label for="rating">Rating:</label>
+        <input type="number" id="rating" min="1" max="5" required>
+        <button type="submit">Add Entry</button>
+    </form>
+    <div id="entries">
+       
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            
+            $('#entry-form').submit(function(e) {
+                e.preventDefault(); 
+
+                
+                var title = $('#title').val();
+                var rating = $('#rating').val();
+
+                
+                var entry = $('<div class="entry">');
+                entry.append('<p>Title: ' + title + ', Rating: ' + rating + '</p>');
+                
+                
+                var removeButton = $('<button class="remove-button">Remove</button>');
+                removeButton.click(function() {
+                    entry.remove(); 
+                });
+
+                entry.append(removeButton);
+
+                
+                $('#entries').append(entry);
+
+                
+                $('#title').val('');
+                $('#rating').val('');
+            });
+        });
+    </script>
+</body>
+</html>
